@@ -1,0 +1,37 @@
+[
+  {
+    "level": "0-5",
+    "trainings": [
+      {
+        "interval": 60,
+        "sets": [2, 3, 2, 2, 3],
+        "regeneration": 1
+      },
+      {
+        "interval": 90,
+        "sets": [3, 4, 2, 3, 4],
+        "regeneration": 1
+      },
+      {
+        "interval": 120,
+        "sets": [4, 5, 3, 3, 5],
+        "regeneration": 2
+      },
+      {
+        "interval": 60,
+        "sets": [5, 6, 4, 4, 6],
+        "regeneration": 1
+      },
+      {
+        "interval": 90,
+        "sets": [5, 6, 4, 4, 7],
+        "regeneration": 1
+      },
+      {
+        "interval": 120,
+        "sets": [5, 7, 5, 5, 7],
+        "regeneration": 2
+      }
+    ]
+  }
+]

@@ -1,52 +1,41 @@
 import React, { Component } from "react";
 import { Select, MenuItem, Grid } from "@material-ui/core";
+import { getLevels, getPlan } from "./trainings";
 
 class TrainingSelector extends Component {
-  state = { range: "", day: "" };
-
-  populateChange(range, day) {
-    this.setState({ range, day }, () => {
-      this.props.onChange(range, day);
-    });
-  }
-
-  handleDayChange = event => {
-    console.log("handleDayChange: ", event.target.value);
-    this.populateChange(this.state.range, event.target.value);
+  handleLevelChange = event => {
+    this.props.onChange(event.target.value, "");
   };
 
-  handleRangeChange = event => {
-    console.log("handleRangeChange: ", event.target.value);
-    this.populateChange(event.target.value, "");
+  handleDayChange = event => {
+    this.props.onChange(this.props.level, event.target.value);
   };
 
   render() {
-    const { trainings } = this.props;
-    const { range, day } = this.state;
-    const plan =
-      range && trainings.find(training => training.range === range).plan;
+    const { level, day } = this.props;
+    const plan = getPlan(level);
     return (
       <Grid container>
-        <Grid item>
-          <Select value={range} onChange={this.handleRangeChange}>
+        <Grid item sm={6} xs={12}>
+          <Select value={level} onChange={this.handleLevelChange}>
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {trainings.map(training => (
-              <MenuItem value={training.range} key={training.range}>
-                {training.range}
+            {getLevels().map(level => (
+              <MenuItem value={level} key={level}>
+                {level}
               </MenuItem>
             ))}
           </Select>
         </Grid>
-        <Grid item>
+        <Grid item sm={6} xs={12}>
           {plan && (
-            <Select value={day} onChange={this.handleDayChange}>
+            <Select value={day.toString()} onChange={this.handleDayChange}>
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {plan.map((_, index) => (
-                <MenuItem value={index} key={index}>
+              {plan.trainings.map((_, index) => (
+                <MenuItem value={index.toString()} key={index}>
                   {index + 1}
                 </MenuItem>
               ))}
